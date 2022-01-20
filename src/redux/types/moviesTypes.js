@@ -4,6 +4,7 @@ export const MOVIES_GET = 'MOVIES_GET';
 export const MOVIES_GET_DETAIL = 'MOVIES_GET_DETAIL';
 export const MOVIES_GET_FAILURE = 'MOVIES_GET_FAILURE';
 export const MOVIES_GET_DETAIL_FAILURE = 'MOVIES_GET_FAILURE';
+export const apiKey = '69ff54fa';
 
 /* 
 export const MOVIES_GET_REQUEST = 'MOVIES_GET_REQUEST';
