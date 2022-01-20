@@ -18,7 +18,7 @@ export const moviesReducer = (state = initalState, action) => {
         case MOVIES_GET:
             return {
                 ...state,
-                searchedMovies: action.payload
+                searchedMovies: action.payload.Search
             }
         case MOVIES_GET_DETAIL:
             return {

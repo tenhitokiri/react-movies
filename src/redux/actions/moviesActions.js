@@ -3,7 +3,6 @@ import {
     MOVIES_REMOVE_FAVORITE,
     MOVIES_GET,
     MOVIES_GET_DETAIL,
-    MOVIES_GET_FAILURE,
     MOVIES_GET_DETAIL_FAILURE,
     apiKey
 } from '../types/moviesTypes';
@@ -25,25 +24,28 @@ export const removeFavoriteMovie = (movieId) => {
 
 //recibe un nombre de pelicula y devuelve una lista de peliculas con el nombre de indicado.
 export const getMovies = (title) => {
-    console.log(`getMovies: ${title}`);
     const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${title}`
     console.log(url);
     return function (dispatch) {
         return fetch(url)
-            .then(response => {
-                console.log(`response: ${response}`);
-                return response.json()
+            .then(response =>
+                response.json()
+            )
+            .then(json => {
+                console.log(json)
+                return dispatch({
+                    type: MOVIES_GET,
+                    payload: json
+                })
             })
-            .then(json => dispatch({
-                type: MOVIES_GET,
-                payload: json
-            }))
-            .catch(error => dispatch({
+            .catch(error => console.log(error));
+
+/*             .catch(error => dispatch({
                 type: MOVIES_GET_FAILURE,
                 payload: error
             }
             ));
-    }
+ */    }
 };
 
 export const getMovieDetail = (id) => {

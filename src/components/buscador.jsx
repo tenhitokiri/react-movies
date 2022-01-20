@@ -6,7 +6,7 @@ class Buscador extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const peliculaBuscar = e.target.buscador.value;
-        getMovies(peliculaBuscar);
+        this.props.getMovies(peliculaBuscar);
     }
 
     render() {
@@ -17,7 +17,7 @@ class Buscador extends Component {
                 </h3>
                 <form onSubmit={(e) => this.handleSubmit(e)} >
                     <div>
-                        <label for="buscador">Buscar:</label>
+                        <label htmlFor="buscador">Buscar:</label>
                         <input
                             type="text"
                             id="buscador"
@@ -34,9 +34,7 @@ class Buscador extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMovies: movies => dispatch(getMovies(movies))
+        getMovies: title => dispatch(getMovies(title))
     }
 }
-
-
 export default connect(null, mapDispatchToProps)(Buscador);
