@@ -10,6 +10,7 @@ class Buscador extends Component {
     }
 
     render() {
+        const { loading, searchedMovies, error } = this.props;
         return (
             <>
                 <h3>
@@ -26,9 +27,26 @@ class Buscador extends Component {
                         />
                         <button type="submit">Buscar</button>
                     </div>
+                    {
+                        loading ? <p>Cargando...</p> : (searchedMovies.length > 0) ?
+                            <div>
+                                <h3>
+                                    Lista de Peliculas Encontradas
+                                </h3>
+                                <div>
+                                    aqui va la lista
+                                </div>
+                            </div>
+                            :
+                            <div>
+                                <h3>
+                                    No se encontraron resultados
+                                </h3>
+                            </div>
+                    }
                 </form>
-            </ >
-        );
+            </>
+        )
     }
 }
 
@@ -37,4 +55,11 @@ const mapDispatchToProps = (dispatch) => {
         getMovies: title => dispatch(getMovies(title))
     }
 }
-export default connect(null, mapDispatchToProps)(Buscador);
+
+const mapStateToProps = (state) => {
+    return {
+        searchedMovies: state.searchedMovies
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Buscador);
